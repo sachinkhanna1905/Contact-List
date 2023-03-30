@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%=locals.title%></title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Our CSS Should be below all other Style so that we can over-ride it -->
+    <link rel="stylesheet" href="/css/home.css">
+    
+</head>
+<body>
+    <!--making our heading-->
+    <h1 id="page-heading">
+        <i class="fa fa-address-book"></i>
+        My Contacts List</h1>
+    <!-- creating out list -->
+    <section class="main-container">
+        <div id="container">
+            <ul>
+                <% for(let i of contact_list){%>
+                    <li class="contact">
+                     <div class="details">
+                        <p><%= i.name%></p>
+                        <p><%= i.phone%></p>
+                     </div>
+                     <div class="delete-button">
+                         <!-- we are using query  -->
+                        <a href="/delete-contact/?id=<%=i._id %>"> 
+                            <i class="fa fa-window-close"></i>
+                        </a>
+                     </div>
+                    </li>
+             <%}%>
+            </ul>
+        </div>
+         <!-- creting form-->
+    <form  action="/contact-list" class="form-data"  method="post">
+        <input type="text" class="input" name="name"placeholder="Enter your name" required>
+        <br>
+        <input type="text" class="input"name="phone" placeholder="Enter your phone no." required>
+        <br>
+        <button type="submit" class="button"> <p class="para">Add</p></button>
+      </form>
+    </section>
+
+     <!-- using vanilla-tilt-min.js  -->
+    <!-- <script type="text/javascript" src="vanilla-tilt.js"></script>
+    <script>
+        VanillaTilt.init(document.querySelector(".main-container"), {
+		max: 25,
+		speed: 400
+	});
+    </script> -->
+</body>
+</html>
